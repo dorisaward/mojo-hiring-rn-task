@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 /*
 	The MIT License (MIT)
 
@@ -22,4 +23,7 @@
 
 	Source: https://github.com/ai/nanoid/blob/950dbdaefef465cc6925c6ec596b3478233a1c2d/nanoid.js
 */
-export let nanoid=(t=21)=>crypto.getRandomValues(new Uint8Array(t)).reduce(((t,e)=>t+=(e&=63)<36?e.toString(36):e<62?(e-26).toString(36).toUpperCase():e>62?"-":"_"),"");
+export let nanoid=Platform.select({
+	web: (t=21)=>crypto.getRandomValues(new Uint8Array(t)).reduce(((t,e)=>t+=(e&=63)<36?e.toString(36):e<62?(e-26).toString(36).toUpperCase():e>62?"-":"_"),""),
+	default: ()=>'',
+});

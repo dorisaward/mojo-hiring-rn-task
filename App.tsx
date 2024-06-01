@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { Image, Linking, StyleSheet, Text, View } from "react-native";
+import { Image, Linking, StyleSheet, Text, View, ScrollView } from "react-native";
 import Footer from "./components/Footer";
 import Stack from "./components/Stack";
 import SPACING from "./assets/styles/spacing";
 
 export default function App() {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollview}>
             <Stack containerStyle={styles.content}>
                 <View style={styles.header}>
                     <Image
@@ -72,7 +72,7 @@ export default function App() {
                 <Footer />
             </Stack>
             <StatusBar style="auto" />
-        </View>
+        </ScrollView>
     );
 }
 
@@ -87,11 +87,14 @@ const FONT_SIZES = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
+    scrollview: {
         alignItems: "center",
         justifyContent: "center",
+    },
+    container: {
+        paddingVertical: SPACING.regular,
+        flex: 1,
+        backgroundColor: "#fff",
     },
     content: {
         width: "100%",
